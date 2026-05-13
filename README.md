@@ -1,7 +1,8 @@
 # 🚀 Race to 100% – Analytics Engine & Dashboard
 
 ## 📌 Overview
-This project demonstrates a **competition tracking analytics system** built using **Excel (Power Pivot) and Power BI**.
+This project demonstrates a **competition tracking snapshot driven analytics system**  to track Project Manager, Vertical perfomance and identify the fastest to reach 100% completion.
+It combines **Excel (Power Pivot)** and **Power BI** to deliver a multi-layer dashboard with both competition ranking and operational insights.
 
 The objective is to identify:
 - 🏆 First Project Manager to reach 100% completion
@@ -25,14 +26,35 @@ The ranking follows a **multi-level deterministic model**:
 ---
 
 ## 🏗 Architecture
+![Architecture](docs/Architecture.png)
 
-```text
-Input (PM_CONFIRMATION)
-        ↓
-Snapshot Layer (PM_History)
-        ↓
-Aggregation & Logic (Power Pivot)
-        ↓
-Final Output (PM_Ranking)
-        ↓
-Power BI Dashboard
+## 📷 Dashboard Preview
+![Dashboard](docs/Dashboard_Preview.png)
+
+## 🧠 Logic Documentation
+
+- 📊 [Data Logic](src/data_model.md)
+- 🏆 [Ranking Logic](src/ranking_logic.md)
+
+## 📂 Dataset Overview
+
+The project uses two datasets:
+
+### PM_Ranking
+- Final output table used for reporting
+- Contains ranking, completion time, and project counts
+
+### PM_Confirmation
+- Provides operational metrics like:
+  - Confirmation %
+  - Vertical performance
+  - Workload distribution
+
+## ⚠️ Disclaimer
+
+This project uses **synthetic/demo data**.
+
+- No real production data is included
+- Business logic is abstracted
+- Intended only for demonstration purposes
+
