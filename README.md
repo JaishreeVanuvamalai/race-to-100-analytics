@@ -47,7 +47,7 @@ The ranking follows a **multi-level deterministic model**:
 ![Dashboard](docs/Tableau_preview.png)
 
 🔗 **View Live Dashboard:**  
-https://public.tableau.com/views/Raceto100-TableauDashboard
+https://public.tableau.com/views/Raceto100-TableuDashboard/Dashboard1
 
 This version recreates the same analytical solution in Tableau, including:
 
