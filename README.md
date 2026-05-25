@@ -61,6 +61,17 @@ The ranking follows a **multi-level deterministic model**:
 
 ---
 
+## ⚙️ Automation
+
+To streamline data preparation, Excel Macros were implemented to:
+
+- Maintain a snapshot history of daily PM completion data  
+- Automate aggregation of PM-level metrics using pivot tables  
+
+This ensured consistency, reduced manual effort, and enabled time-based tracking for ranking logic.
+
+---
+
 ## 🏗 Architecture
 
 ![Architecture](docs/Architecture.png)
