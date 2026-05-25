@@ -1,6 +1,37 @@
 # 🚀 Race to 100% – Analytics Engine & Dashboard
 
 ---
+## 💡 Motivation / Background
+
+In the existing workflow, timesheet submissions and approvals were managed by Project Managers (PMs) across multiple business verticals. While the process functioned operationally, there was no structured system to track completion performance over time.
+
+At the end of each reporting cycle, it was observed that:
+- Some verticals achieved 100% completion of submissions and approvals  
+- Several others consistently fell short of complete closure  
+- There was no mechanism to drive accountability or encourage timely completion  
+
+This highlighted gaps in:
+- Visibility into progress across PMs and verticals  
+- Performance accountability  
+- Motivation for timely execution  
+
+To address this, a **“Race to 100%” performance initiative** was introduced.
+
+The concept aimed to:
+- Reward the **first 5 Project Managers** who achieved 100% completion  
+- Recognize the **top 3 verticals** based on full approval rates  
+- Introduce a **competitive and engaging performance environment**  
+
+To support this initiative, a need emerged for a **live, interactive tracking system** that could:
+- Monitor daily progress of PMs  
+- Provide real-time visibility into completion status  
+- Enable fair and transparent performance comparison  
+- Drive engagement through competition  
+
+This led to the development of a **snapshot-driven analytics dashboard**, built using daily PM completion data, to track progress dynamically and support data-driven performance management.
+
+👉 The goal was to transform a static process into a competitive, data-driven performance tracking system.
+
 
 ## 📌 Overview
 
