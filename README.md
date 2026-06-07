@@ -1,152 +1,332 @@
-# 🚀 Race to 100% – Analytics Engine & Dashboard
+# PM Confirmation Dashboard
 
----
-## 💡 Motivation / Background
+## Overview
 
-In the existing workflow, timesheet submissions and approvals were managed by Project Managers (PMs) across multiple business verticals. While the process functioned operationally, there was no structured system to track completion performance over time.
+The PM Confirmation Dashboard is a PostgreSQL-powered analytics platform designed to monitor project confirmation progress across business verticals and project managers.
 
-At the end of each reporting cycle, it was observed that:
-- Some verticals achieved 100% completion of submissions and approvals  
-- Several others consistently fell short of complete closure  
-- There was no mechanism to drive accountability or encourage timely completion  
+The project originated from a legacy Excel and VBA-based reporting solution that was becoming increasingly difficult to maintain, validate, and scale as data volumes grew. To address these challenges, the solution was redesigned and migrated to a modern analytics architecture using PostgreSQL and Power BI.
 
-This highlighted gaps in:
-- Visibility into progress across PMs and verticals  
-- Performance accountability  
-- Motivation for timely execution  
-
-To address this, a **“Race to 100%” performance initiative** was introduced.
-
-The concept aimed to:
-- Reward the **first 5 Project Managers** who achieved 100% completion  
-- Recognize the **top 3 verticals** based on full approval rates  
-- Introduce a **competitive and engaging performance environment**  
-
-To support this initiative, a need emerged for a **live, interactive tracking system** that could:
-- Monitor daily progress of PMs  
-- Provide real-time visibility into completion status  
-- Enable fair and transparent performance comparison  
-- Drive engagement through competition  
-
-This led to the development of a **snapshot-driven analytics dashboard**, built using daily PM completion data, to track progress dynamically and support data-driven performance management.
-
-👉 The goal was to transform a static process into a competitive, data-driven performance tracking system.
-
-
-## 📌 Overview
-
-This project demonstrates a **snapshot-driven analytics system** designed to track Project Manager and Vertical performance, and identify the fastest to reach 100% completion.
-
-It combines **Excel (Power Pivot), Power BI, and Tableau** to deliver a multi-layer analytics solution with both competition ranking and operational insights.
-
-### 🎯 Objectives:
-- 🏆 Identify the first Project Manager to reach 100% completion  
-- 📊 Rank top performers based on completion time and workload  
-- 📈 Analyze performance across verticals  
+The resulting platform centralizes business logic within SQL, improves reporting reliability, simplifies maintenance, and provides interactive drill-through analysis for stakeholders.
 
 ---
 
-## 🧠 Core Logic
+## Business Problem
 
-The ranking follows a **multi-level deterministic model**:
+The organization required a reliable method for monitoring project manager confirmation status across multiple business verticals.
 
-1. **Completion Timestamp (Primary)**
-   - Earlier completion → better rank  
+The original reporting process relied on:
 
-2. **Total Projects (Secondary)**
-   - Higher workload → higher priority within the same timestamp  
+* Oracle Fusion report extracts
+* Excel workbooks
+* VBA macros
+* Manual refresh processes
+* Historical snapshot files
 
-3. **Dense Ranking**
-   - Continuous ranking with no gaps  
+As the solution evolved, several challenges emerged:
 
----
+* Growing workbook sizes resulted in performance degradation
+* VBA macros became increasingly difficult to maintain
+* Business logic was scattered across multiple files
+* Validation and troubleshooting became time-consuming
+* Scaling the solution required significant manual effort
 
-## ⚙️ Automation
-
-To streamline data preparation, Excel Macros were implemented to:
-
-- Maintain a snapshot history of daily PM completion data  
-- Automate aggregation of PM-level metrics using pivot tables  
-
-This ensured consistency, reduced manual effort, and enabled time-based tracking for ranking logic.
+The objective was to preserve existing business outcomes while modernizing the underlying architecture.
 
 ---
 
-## 🏗 Architecture
+## Solution
 
-![Architecture](docs/Architecture.png)
+The dashboard was redesigned as a layered analytics platform.
 
----
+Oracle Fusion
 
-## 📊 Dashboards
+↓
 
-### 🔹 Power BI Dashboard
-![Dashboard](docs/Dashboard_Preview.png)
+Excel Report Extract
 
----
+↓
 
-### 🔹 Tableau Dashboard
-![Dashboard](docs/Tableau_preview.png)
+PostgreSQL Raw Layer
 
-🔗 **View Live Dashboard:**  
-https://public.tableau.com/views/Raceto100-TableuDashboard/Dashboard1
+↓
 
-This version recreates the same analytical solution in Tableau, including:
+PostgreSQL Analytics Layer
 
-- KPI tracking (Total, Confirmed, Pending, Completion %)  
-- PM ranking and winner identification  
-- Vertical-level performance analysis  
-- Interactive drill-down using filtering  
+↓
 
----
+Power BI
 
-## 🧠 Logic Documentation
+↓
 
-- 📊 [Data Logic](src/data_logic.md)
-- 🏆 [Ranking Logic](src/ranking_logic.md)
+Interactive Dashboard
+
+The new architecture centralizes business logic within PostgreSQL while allowing Power BI to focus exclusively on visualization and user interaction.
 
 ---
 
-## 📂 Dataset Overview
+## Key Features
 
-The project uses two datasets:
+### Executive KPI Dashboard
 
-### 🔹 PM_Ranking
-- Final output table used for reporting  
-- Contains ranking, completion timestamp, and project counts  
+Monitor:
 
-### 🔹 PM_Confirmation
-- Provides operational metrics such as:
-  - Confirmation status  
-  - Vertical classification  
-  - Project-level details  
+* Total Projects
+* Confirmed Projects
+* Pending Projects
+* Completion Percentage
 
 ---
 
-## ⚙️ Tech Stack
+### Vertical Performance Analysis
 
-- **Excel (Power Pivot, DAX)**
-- **Power BI**
-- **Tableau**
-- **Data Modeling & Aggregation Logic**
+Analyze confirmation progress by business vertical through:
 
----
-
-## 💡 Key Learnings
-
-- Implemented snapshot-based tracking for time-aware analytics  
-- Built ranking logic combining temporal and workload factors  
-- Resolved aggregation issues and ensured correct percentage calculations  
-- Recreated the same analytical model across Power BI and Tableau  
+* Vertical Rankings
+* Completion Percentage Tracking
+* Drill-through Navigation
 
 ---
 
-## ⚠️ Disclaimer
+### Project Manager Performance Tracking
 
-This project uses **synthetic/demo data**.
+Evaluate project manager performance using:
 
-- No real production data is included  
-- Business logic is abstracted  
-- Intended for learning and demonstration purposes only  
+* PM Rankings
+* Race To 100 Leaderboard
+* Completion Metrics
 
 ---
+
+### Project-Level Visibility
+
+Drill into:
+
+* Project ID
+* Project Name
+* Confirmation Status
+
+for detailed project analysis.
+
+---
+
+## Dashboard Pages
+
+### Global Dashboard
+
+Executive-level reporting page providing organizational visibility into project confirmation progress.
+
+Features:
+
+* KPI Cards
+* Confirmation Status Distribution
+* Vertical Rankings
+* Race To 100 Leaderboard
+
+---
+
+### Vertical Detail Page
+
+Provides performance analysis for a selected business vertical.
+
+Features:
+
+* Vertical KPIs
+* Project Manager Performance Table
+* Vertical-Specific Drill-Through
+
+---
+
+### Project Manager Detail Page
+
+Provides project-level visibility for an individual project manager.
+
+Features:
+
+* PM KPIs
+* Assigned Project List
+* Confirmation Status Tracking
+
+---
+
+## Technology Stack
+
+### Source System
+
+* Oracle Fusion
+
+### Database
+
+* PostgreSQL
+
+### Database Management
+
+* DBeaver
+
+### Analytics Layer
+
+* SQL Views
+
+### Reporting Layer
+
+* Power BI
+
+### Legacy Solution
+
+* Excel
+* VBA
+
+---
+
+## Design Principles
+
+The platform was designed around four key principles:
+
+### Preserve Source Data
+
+Source extracts remain unchanged within the raw layer.
+
+### Centralize Business Logic
+
+Business calculations are implemented in PostgreSQL.
+
+### Simplify Reporting
+
+Power BI consumes reporting-ready datasets.
+
+### Enable Scalability
+
+The architecture supports future enhancements and automation.
+
+---
+
+## Project Journey
+
+This project began as an effort to improve an existing Excel-based reporting process.
+
+The migration journey included:
+
+1. Understanding the legacy reporting process
+2. Reverse engineering Excel calculations
+3. Designing a PostgreSQL architecture
+4. Building analytical SQL views
+5. Recreating reporting logic in Power BI
+6. Implementing ranking and drill-through functionality
+7. Validating outputs against source data
+8. Documenting architecture and business logic
+
+The result is a scalable analytics platform that preserves business outcomes while significantly improving maintainability.
+
+---
+
+## Repository Structure
+
+```text
+PM-Confirmation-Dashboard
+│
+├── README.md
+│
+├── dashboard
+│   ├── PM_Confirmation_Dashboard.pbix
+│   └── Race_to_100_Tableau.twbx
+│
+├── docs
+│   ├── Architecture.md
+│   ├── Data_Model.md
+│   ├── SQL_Design.md
+│   ├── Ranking_Logic.md
+│   ├── PowerBI_Design.md
+│   └── Validation_Guide.md
+│
+├── screenshots
+│
+├── sql
+│
+└── data
+```
+
+---
+
+## Documentation
+
+Additional technical documentation is available within the docs directory.
+
+### Architecture
+
+System architecture and data flow.
+
+### Data Model
+
+Tables, views, relationships, and reporting datasets.
+
+### SQL Design
+
+Analytics layer design decisions and SQL architecture.
+
+### Ranking Logic
+
+Vertical rankings, PM rankings, and Race To 100 calculations.
+
+### Power BI Design
+
+Dashboard structure, navigation, and visualization strategy.
+
+### Validation Guide
+
+Testing and validation procedures used throughout development.
+
+---
+
+## Future Roadmap
+
+Planned future enhancements include:
+
+### Version 2.1
+
+Automated PM History Generation
+
+### Version 2.2
+
+File Upload Utility
+
+### Version 2.3
+
+Historical Trend Reporting
+
+### Version 2.4
+
+Automated Refresh Framework
+
+---
+
+## Screenshots
+
+### Global Dashboard
+
+*Add screenshot*
+
+### Vertical Detail
+
+*Add screenshot*
+
+### Project Manager Detail
+
+*Add screenshot*
+
+---
+
+## Outcomes
+
+The project successfully:
+
+* Migrated reporting logic from Excel and VBA to PostgreSQL
+* Centralized business calculations within SQL
+* Improved maintainability and scalability
+* Reduced reporting complexity
+* Established a reusable analytics architecture
+* Delivered interactive Power BI reporting with drill-through analysis
+
+---
+
+## Author
+
+Designed and developed as part of a reporting modernization initiative focused on improving project confirmation analytics, reporting reliability, and future scalability.
